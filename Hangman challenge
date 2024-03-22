@@ -1,0 +1,31 @@
+#Hangman challenge
+import random
+
+print("Hello player! Here's a Hangman challenge for you! [Type stop to terminate the game]")
+wordlist=['key','blanket','cherry', 'date','piano','tail']
+emptywordlist=[]
+randomword =random.choice(wordlist)
+for i in randomword:
+    emptywordlist.append("_")
+print(f"Here is your mystery word! {emptywordlist}")
+def mainfunc():
+    global continuethegame
+    randomletter = input('Enter a letter to play a guessing game: ').lower()
+    if randomletter == 'stop':
+        continuethegame = 'no'
+        print('Terminating the game :(')
+
+    for i in randomword:
+        if str(i) == randomletter:
+            index=randomword.index(i)
+            emptywordlist[index] = randomletter
+            print(emptywordlist)
+continuethegame = 'yes'
+mainfunc()
+while continuethegame == 'yes':
+    if emptywordlist == list(randomword):
+        print('Yay, you made it! ')
+        break
+    mainfunc()
+
+
